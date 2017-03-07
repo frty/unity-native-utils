@@ -45,6 +45,10 @@ static NativeUtils * _sharedInstance;
 
 -(void) sendEmailWithSubject:(NSString*) subject withBody:(NSString*) body withRecepient: (NSString*) recepient withImage: (NSString*) imageDataString {
     
+    if (![MFMailComposeViewController canSendMail]) {
+        return;
+    }
+    
     MFMailComposeViewController* composeVC = [[MFMailComposeViewController alloc] init];
     composeVC.mailComposeDelegate = self;
     
